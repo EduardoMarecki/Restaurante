@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sabor & Arte - Restaurante em Curitiba com gastronomia refinada. Reserve sua mesa ou peça delivery.">
+    <meta name="keywords" content="restaurante, gastronomia, curitiba, delivery, reservas, jantar">
+    <meta name="author" content="Sabor & Arte">
+    <meta property="og:title" content="Sabor & Arte - Restaurante">
+    <meta property="og:description" content="Experiência gastronômica única em Curitiba">
+    <meta property="og:image" content="img/logo.png">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://seusite.com/pagina">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:locale" content="pt_BR">
+    <title>Sabor & Arte - Restaurante</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&h=900&fit=crop') no-repeat center center;
+            background-size: cover;
+            min-height: 100vh;
+            position: relative;
+            margin-top: -76px; /* Compensar a altura da navbar */
+            padding-top: 76px;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+        }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #dc3545;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: #c82333;
+            transform: translateY(-3px);
+        }
+        
+        /* Theme Switch */
+        .theme-switch {
+            position: fixed;
+            top: 100px;
+            right: 25px;
+            z-index: 1000;
+        }
+        
+        /* Dark Theme */
+        [data-theme="dark"] {
+            background-color: #343a40;
+            color: #fff;
+        }
+        
+        [data-theme="dark"] .card {
+            background-color: #454d55;
+        }
+        
+        [data-theme="dark"] .navbar {
+            background-color: #212529 !important;
+        }
+
+        /* Newsletter Styles */
+        #newsletterForm .form-control:focus {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            color: white;
+            text-decoration: none;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                min-height: 70vh;
+            }
+            .card-columns {
+                column-count: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            .display-2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-danger" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <!-- Theme Switch -->
+    <div class="theme-switch">
+        <button class="btn btn-outline-danger" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Sabor & Arte</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reservas.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pedidos.html">Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center">
+        <div class="container text-center text-white">
+            <h1 class="display-2 mb-4">Sabor & Arte</h1>
+            <p class="lead mb-5">Uma experiência gastronômica única em cada prato</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="reservas.html" class="btn btn-danger btn-lg">Reserve sua Mesa</a>
+                <button class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#pedidoRapidoModal">
+                    <i class="fas fa-utensils me-2"></i>Pedir Agora
+                </button>
+                <a href="cardapio.html" class="btn btn-outline-light btn-lg">Ver Cardápio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossos Destaques</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?w=800&h=600&fit=crop" class="card-img-top" alt="Prato Especial" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Prato Especial</h5>
+                            <p class="card-text">Uma criação única do nosso chef, combinando sabores tradicionais e modernos.</p>
+                            <a href="cardapio.html" class="btn btn-outline-danger">Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop" class="card-img-top" alt="Menu Degustação" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Menu Degustação</h5>
+                            <p class="card-text">Uma jornada gastronômica com 6 pratos selecionados especialmente.</p>
+                            <a href="cardapio.html" class="btn btn-outline-danger">Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop" class="card-img-top" alt="Sobremesas" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sobremesas Especiais</h5>
+                            <p class="card-text">Nossas sobremesas artesanais são preparadas diariamente.</p>
+                            <a href="cardapio.html" class="btn btn-outline-danger">Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Equipe Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossa Equipe</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 team-member">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&h=600&fit=crop" class="card-img-top" alt="Chef" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Chef Ricardo Santos</h5>
+                            <p class="text-muted">Chef Principal</p>
+                            <p class="card-text">Com mais de 20 anos de experiência em gastronomia internacional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 team-member">
+                        <img src="https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?w=800&h=600&fit=crop" class="card-img-top" alt="Sous Chef" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Pedro Oliveira</h5>
+                            <p class="text-muted">Sous Chef</p>
+                            <p class="card-text">Especialista em confeitaria e pratos contemporâneos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 team-member">
+                        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&h=600&fit=crop" class="card-img-top" alt="Sommelier" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Carlos Mendes</h5>
+                            <p class="text-muted">Sommelier</p>
+                            <p class="card-text">Expert em harmonização de vinhos e experiência internacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">O que nossos clientes dizem</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="text-warning mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-3">"Uma experiência incrível! A comida é simplesmente maravilhosa e o atendimento é impecável."</p>
+                        <div class="fw-bold">- Maria Silva</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="text-warning mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-3">"O melhor restaurante da cidade! Ambiente acolhedor e pratos deliciosos."</p>
+                        <div class="fw-bold">- João Santos</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="text-warning mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-3">"Sempre que venho aqui saio satisfeito. O menu de degustação é uma experiência única!"</p>
+                        <div class="fw-bold">- Ana Oliveira</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-light py-5" data-aos="fade-up">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h3 class="mb-4">Receba Nossas Novidades</h3>
+                    <p class="text-muted mb-4">Inscreva-se para receber promoções exclusivas e novidades do cardápio.</p>
+                    <form id="newsletterForm" class="row g-3 justify-content-center">
+                        <div class="col-8">
+                            <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-danger">Inscrever-se</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Pedido Rápido -->
+    <div class="modal fade" id="pedidoRapidoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Faça seu Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Pratos Populares</h6>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="filtroMenu" 
+                                           placeholder="Buscar pratos...">
+                                    <button class="btn btn-outline-danger" type="button" id="limparFiltro">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mb-3 w-100" role="group">
+                                <input type="radio" class="btn-check" name="filtroTipo" id="todos" value="todos" checked>
+                                <label class="btn btn-outline-danger" for="todos">Todos</label>
+                                
+                                <input type="radio" class="btn-check" name="filtroTipo" id="principais" value="principal">
+                                <label class="btn btn-outline-danger" for="principais">Principais</label>
+                                
+                                <input type="radio" class="btn-check" name="filtroTipo" id="sobremesas" value="sobremesa">
+                                <label class="btn btn-outline-danger" for="sobremesas">Sobremesas</label>
+                            </div>
+                            <div class="list-group mb-3" id="listaPratos">
+                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                        data-id="1" 
+                                        data-nome="Prato Especial do Chef" 
+                                        data-preco="89.90"
+                                        data-tipo="principal"
+                                        data-rating="4.8">
+                                    <div>
+                                        <h6 class="mb-0">Prato Especial do Chef</h6>
+                                        <small class="text-muted">Criação única com ingredientes selecionados</small>
+                                        <div class="rating mt-1">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star-half-alt text-warning"></i>
+                                            <small class="ms-1 text-muted">(4.8)</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-danger">R$ 89,90</span>
+                                </button>
+                                
+                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                        data-id="2" 
+                                        data-nome="Menu Degustação" 
+                                        data-preco="159.90"
+                                        data-tipo="principal"
+                                        data-rating="4.9">
+                                    <div>
+                                        <h6 class="mb-0">Menu Degustação</h6>
+                                        <small class="text-muted">6 pratos selecionados pelo chef</small>
+                                        <div class="rating mt-1">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <small class="ms-1 text-muted">(4.9)</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-danger">R$ 159,90</span>
+                                </button>
+                                
+                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                        data-id="3" 
+                                        data-nome="Sobremesa do Dia" 
+                                        data-preco="29.90"
+                                        data-tipo="sobremesa"
+                                        data-rating="4.7">
+                                    <div>
+                                        <h6 class="mb-0">Sobremesa do Dia</h6>
+                                        <small class="text-muted">Sobremesa artesanal especial</small>
+                                        <div class="rating mt-1">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star-half-alt text-warning"></i>
+                                            <small class="ms-1 text-muted">(4.7)</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-danger">R$ 29,90</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <form id="pedidoRapidoForm" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label">Seu Nome</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="nome" 
+                                           required 
+                                           minlength="3"
+                                           pattern="[A-Za-zÀ-ÿ\s]+"
+                                           data-error="Por favor, insira seu nome completo (apenas letras)">
+                                    <div class="invalid-feedback">Por favor, insira seu nome completo (apenas letras)</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Telefone</label>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           name="telefone" 
+                                           required 
+                                           pattern="^\([1-9]{2}\) (?:9[1-9]|[2-8])[0-9]{3}\-[0-9]{4}$"
+                                           data-error="Insira um telefone válido: (99) 99999-9999"
+                                           placeholder="(99) 99999-9999">
+                                    <div class="invalid-feedback">Insira um telefone válido: (99) 99999-9999</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Endereço de Entrega</label>
+                                    <textarea class="form-control" 
+                                              name="endereco" 
+                                              rows="3" 
+                                              required 
+                                              minlength="10"
+                                              data-error="Por favor, insira um endereço completo"></textarea>
+                                    <div class="invalid-feedback">Por favor, insira um endereço completo (mínimo 10 caracteres)</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Observações</label>
+                                    <textarea class="form-control" 
+                                              name="observacoes" 
+                                              rows="2"
+                                              maxlength="200"></textarea>
+                                    <div class="text-muted small">Máximo 200 caracteres</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger" id="finalizarPedido">Finalizar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5511912345678" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Sabor & Arte</h5>
+                    <p>Experiências gastronômicas únicas desde 2010.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contato</h5>
+                    <p>
+                        <i class="fas fa-phone me-2"></i> (11) 1234-5678<br>
+                        <i class="fas fa-envelope me-2"></i> contato@saborarte.com.br
+                    </p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Siga-nos</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <small>&copy; 2024 Sabor & Arte. Todos os direitos reservados.</small>
+                <div class="mt-2">
+                    <a href="privacidade.html" class="text-white text-decoration-none me-3">Política de Privacidade</a>
+                    <span class="text-white">|</span>
+                    <a href="termos.html" class="text-white text-decoration-none ms-3">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Inicializar sistemas quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+
+            // Inicializar sistema de pedidos
+            pedidoSystem.init();
+
+            // Inicializar sistema de menu
+            menuSystem.init();
+        });
+
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Scroll to Top
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.display = 'flex';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Theme Switch
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                document.body.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Lazy Loading para imagens
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Aqui você pode implementar o envio do email para um backend
+            
+            // Feedback visual
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Inscrito!';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+                this.reset();
+            }, 3000);
+        });
+
+        // Sistema de Pedidos
+        const pedidoSystem = {
+            itensSelecionados: [],
+            
+            init() {
+                this.setupEventListeners();
+                this.setupMasks();
+            },
+            
+            setupEventListeners() {
+                // Selecionar itens do pedido
+                document.querySelectorAll('#listaPratos .list-group-item').forEach(item => {
+                    item.addEventListener('click', () => this.toggleItem(item));
+                });
+                
+                // Finalizar pedido
+                document.getElementById('finalizarPedido').addEventListener('click', () => this.processarPedido());
+                
+                // Atualizar resumo ao mudar quantidade
+                document.querySelectorAll('.quantidade-item').forEach(input => {
+                    input.addEventListener('change', () => this.atualizarResumo());
+                });
+            },
+            
+            setupMasks() {
+                // Máscara para telefone
+                const telefoneInput = document.querySelector('input[name="telefone"]');
+                telefoneInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 11) {
+                        value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                        value = value.replace(/(\d{4,5})(\d{4})$/, '$1-$2');
+                        e.target.value = value;
+                    }
+                });
+            },
+            
+            toggleItem(element) {
+                element.classList.toggle('active');
+                
+                const itemData = {
+                    id: element.dataset.id,
+                    nome: element.dataset.nome,
+                    preco: parseFloat(element.dataset.preco),
+                    quantidade: 1
+                };
+                
+                if (element.classList.contains('active')) {
+                    this.itensSelecionados.push(itemData);
+                    element.style.backgroundColor = '#dc354522';
+                } else {
+                    this.itensSelecionados = this.itensSelecionados.filter(item => item.id !== itemData.id);
+                    element.style.backgroundColor = '';
+                }
+                
+                this.atualizarResumo();
+            },
+            
+            atualizarResumo() {
+                const total = this.itensSelecionados.reduce((acc, item) => {
+                    return acc + (item.preco * item.quantidade);
+                }, 0);
+                
+                // Atualizar contador de itens
+                const numItens = this.itensSelecionados.reduce((acc, item) => acc + item.quantidade, 0);
+                document.getElementById('numItensCarrinho').textContent = numItens;
+                
+                // Atualizar total
+                document.getElementById('totalPedido').textContent = 
+                    `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+            },
+            
+            validarFormulario() {
+                const form = document.getElementById('pedidoRapidoForm');
+                let isValid = true;
+                
+                // Remover mensagens de erro anteriores
+                form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                
+                // Validar nome
+                const nome = form.querySelector('input[name="nome"]');
+                if (!nome.value.trim() || nome.value.trim().split(' ').length < 2) {
+                    nome.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                // Validar telefone
+                const telefone = form.querySelector('input[name="telefone"]');
+                if (!telefone.value.match(/^\([1-9]{2}\) (?:9[1-9]|[2-8])[0-9]{3}\-[0-9]{4}$/)) {
+                    telefone.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                // Validar endereço
+                const endereco = form.querySelector('textarea[name="endereco"]');
+                if (!endereco.value.trim() || endereco.value.trim().length < 10) {
+                    endereco.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                return isValid;
+            },
+            
+            async processarPedido() {
+                if (this.itensSelecionados.length === 0) {
+                    this.mostrarErro('Por favor, selecione pelo menos um item do menu.');
+                    return;
+                }
+                
+                if (!this.validarFormulario()) {
+                    this.mostrarErro('Por favor, preencha todos os campos corretamente.');
+                    return;
+                }
+                
+                const form = document.getElementById('pedidoRapidoForm');
+                const btnFinalizar = document.getElementById('finalizarPedido');
+                
+                try {
+                    btnFinalizar.disabled = true;
+                    btnFinalizar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Processando...';
+                    
+                    // Simular processamento do pedido
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    this.mostrarSucesso();
+                    
+                } catch (error) {
+                    console.error('Erro:', error);
+                    this.mostrarErro('Ocorreu um erro ao processar seu pedido. Por favor, tente novamente.');
+                    
+                } finally {
+                    btnFinalizar.disabled = false;
+                    btnFinalizar.textContent = 'Finalizar Pedido';
+                }
+            },
+            
+            mostrarSucesso() {
+                const modalBody = document.querySelector('#pedidoRapidoModal .modal-body');
+                const numeroPedido = Math.floor(Math.random() * 10000) + 1;
+                
+                modalBody.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
+                        <h4>Pedido #${numeroPedido} Realizado com Sucesso!</h4>
+                        <p class="mb-0">Em breve entraremos em contato para confirmar seu pedido.</p>
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                Tempo estimado de entrega: 45-60 minutos
+                            </small>
+                        </div>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('pedidoRapidoModal'));
+                    modal.hide();
+                    location.reload();
+                }, 3000);
+            },
+            
+            mostrarErro(mensagem) {
+                const toastContainer = document.createElement('div');
+                toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+                toastContainer.style.zIndex = '1070';
+                
+                toastContainer.innerHTML = `
+                    <div class="toast align-items-center text-white bg-danger border-0" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                ${mensagem}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toastContainer);
+                const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+                toast.show();
+                
+                toastContainer.addEventListener('hidden.bs.toast', () => {
+                    toastContainer.remove();
+                });
+            }
+        };
+
+        // Sistema de Filtro e Avaliação
+        const menuSystem = {
+            init() {
+                // Aguardar o DOM estar completamente carregado
+                document.addEventListener('DOMContentLoaded', () => {
+                    this.setupFiltros();
+                    this.setupAvaliacao();
+                });
+            },
+            
+            setupFiltros() {
+                const filtroInput = document.getElementById('filtroMenu');
+                const limparFiltro = document.getElementById('limparFiltro');
+                const filtrosTipo = document.getElementsByName('filtroTipo');
+                
+                if (filtroInput && limparFiltro) {
+                    filtroInput.addEventListener('input', () => this.aplicarFiltros());
+                    limparFiltro.addEventListener('click', () => {
+                        filtroInput.value = '';
+                        if (document.getElementById('todos')) {
+                            document.getElementById('todos').checked = true;
+                        }
+                        this.aplicarFiltros();
+                    });
+                }
+                
+                filtrosTipo.forEach(filtro => {
+                    filtro.addEventListener('change', () => this.aplicarFiltros());
+                });
+            },
+            
+            setupAvaliacao() {
+                const items = document.querySelectorAll('#listaPratos .list-group-item');
+                items.forEach(item => {
+                    const ratingDiv = item.querySelector('.rating');
+                    if (ratingDiv) {
+                        // Prevenir que o clique na avaliação selecione o item
+                        ratingDiv.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.mostrarModalAvaliacao(item.dataset.id, item.dataset.nome);
+                        });
+                        
+                        // Adicionar cursor pointer nas estrelas
+                        ratingDiv.style.cursor = 'pointer';
+                        ratingDiv.title = 'Clique para avaliar';
+                    }
+                });
+            },
+            
+            aplicarFiltros() {
+                const filtroInput = document.getElementById('filtroMenu');
+                const searchTerm = filtroInput ? filtroInput.value.toLowerCase() : '';
+                const tipoSelecionado = document.querySelector('input[name="filtroTipo"]:checked')?.value || 'todos';
+                
+                document.querySelectorAll('#listaPratos .list-group-item').forEach(item => {
+                    const nome = item.dataset.nome.toLowerCase();
+                    const tipo = item.dataset.tipo;
+                    const matchSearch = nome.includes(searchTerm);
+                    const matchTipo = tipoSelecionado === 'todos' || tipo === tipoSelecionado;
+                    
+                    item.style.display = matchSearch && matchTipo ? 'flex' : 'none';
+                });
+            },
+            
+            mostrarModalAvaliacao(itemId, itemNome) {
+                // Remover modal anterior se existir
+                const modalAnterior = document.getElementById('avaliacaoModal');
+                if (modalAnterior) {
+                    modalAnterior.remove();
+                }
+                
+                const modalHtml = `
+                    <div class="modal fade" id="avaliacaoModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Avaliar ${itemNome}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center mb-3">
+                                        <div class="rating-input" style="cursor: pointer;">
+                                            <i class="far fa-star fa-2x text-warning" data-rating="1"></i>
+                                            <i class="far fa-star fa-2x text-warning" data-rating="2"></i>
+                                            <i class="far fa-star fa-2x text-warning" data-rating="3"></i>
+                                            <i class="far fa-star fa-2x text-warning" data-rating="4"></i>
+                                            <i class="far fa-star fa-2x text-warning" data-rating="5"></i>
+                                        </div>
+                                        <div class="mt-2 text-muted">Clique para avaliar</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Comentário (opcional)</label>
+                                        <textarea class="form-control" rows="3" maxlength="200"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEnviarAvaliacao">
+                                        Enviar Avaliação
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                
+                const modal = new bootstrap.Modal(document.getElementById('avaliacaoModal'));
+                modal.show();
+                
+                // Setup das estrelas interativas
+                const ratingInput = document.querySelector('.rating-input');
+                const stars = ratingInput.querySelectorAll('.fa-star');
+                let selectedRating = 0;
+                
+                stars.forEach(star => {
+                    star.addEventListener('mouseover', () => {
+                        const rating = parseInt(star.dataset.rating);
+                        this.atualizarEstrelas(rating);
+                    });
+                    
+                    star.addEventListener('click', () => {
+                        selectedRating = parseInt(star.dataset.rating);
+                        this.atualizarEstrelas(selectedRating, true);
+                    });
+                });
+                
+                ratingInput.addEventListener('mouseout', () => {
+                    this.atualizarEstrelas(selectedRating);
+                });
+                
+                // Configurar botão de enviar
+                document.getElementById('btnEnviarAvaliacao').addEventListener('click', () => {
+                    this.enviarAvaliacao(itemId, selectedRating);
+                });
+                
+                // Remover modal quando fechado
+                document.getElementById('avaliacaoModal').addEventListener('hidden.bs.modal', function () {
+                    this.remove();
+                });
+            },
+            
+            atualizarEstrelas(rating, fixar = false) {
+                const stars = document.querySelectorAll('.rating-input .fa-star');
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.className = 'fas fa-star fa-2x text-warning';
+                    } else {
+                        star.className = 'far fa-star fa-2x text-warning';
+                    }
+                });
+            },
+            
+            async enviarAvaliacao(itemId, rating) {
+                if (!rating) {
+                    alert('Por favor, selecione uma avaliação');
+                    return;
+                }
+                
+                const comentario = document.querySelector('#avaliacaoModal textarea').value;
+                const btnEnviar = document.getElementById('btnEnviarAvaliacao');
+                
+                try {
+                    btnEnviar.disabled = true;
+                    btnEnviar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
+                    
+                    // Simular envio da avaliação
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Atualizar visual da avaliação no item
+                    const item = document.querySelector(`[data-id="${itemId}"]`);
+                    const ratingDisplay = item.querySelector('.rating small');
+                    const novaMedia = ((parseFloat(item.dataset.rating) * 5 + rating) / 6).toFixed(1);
+                    ratingDisplay.textContent = `(${novaMedia})`;
+                    item.dataset.rating = novaMedia;
+                    
+                    // Fechar modal
+                    bootstrap.Modal.getInstance(document.getElementById('avaliacaoModal')).hide();
+                    
+                    // Mostrar feedback
+                    this.mostrarSucesso('Avaliação enviada com sucesso!');
+                    
+                } catch (error) {
+                    console.error('Erro ao enviar avaliação:', error);
+                    this.mostrarErro('Erro ao enviar avaliação. Tente novamente.');
+                } finally {
+                    btnEnviar.disabled = false;
+                    btnEnviar.textContent = 'Enviar Avaliação';
+                }
+            },
+            
+            mostrarSucesso(mensagem) {
+                const toastContainer = document.createElement('div');
+                toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+                toastContainer.style.zIndex = '1070';
+                
+                toastContainer.innerHTML = `
+                    <div class="toast align-items-center text-white bg-success border-0" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="fas fa-check-circle me-2"></i>
+                                ${mensagem}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toastContainer);
+                const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+                toast.show();
+                
+                toastContainer.addEventListener('hidden.bs.toast', () => {
+                    toastContainer.remove();
+                });
+            },
+            
+            mostrarErro(mensagem) {
+                const toastContainer = document.createElement('div');
+                toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+                toastContainer.style.zIndex = '1070';
+                
+                toastContainer.innerHTML = `
+                    <div class="toast align-items-center text-white bg-danger border-0" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                ${mensagem}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toastContainer);
+                const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+                toast.show();
+                
+                toastContainer.addEventListener('hidden.bs.toast', () => {
+                    toastContainer.remove();
+                });
+            }
+        };
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_ID');
+    </script>
+</body>
+</html> 

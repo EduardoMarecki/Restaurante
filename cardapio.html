@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Sabor & Arte</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .menu-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+        }
+
+        .menu-item {
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-pills .nav-link {
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            margin: 0.25rem;
+            border-radius: 20px;
+        }
+
+        .category-pills .nav-link.active {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .search-box {
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #dc3545;
+        }
+
+        .price {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .dietary-icon {
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        .menu-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Sabor & Arte</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reservas.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pedidos.html">Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Header -->
+    <header class="menu-header text-white text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Nosso Cardápio</h1>
+            <p class="lead">Descubra nossa seleção de pratos exclusivos</p>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control search-box border-start-0" id="searchMenu" placeholder="Buscar pratos, ingredientes...">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Pills -->
+            <ul class="nav nav-pills category-pills justify-content-center mb-5" id="menuTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#todos">Todos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#entradas">Entradas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#principais">Pratos Principais</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#sobremesas">Sobremesas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#bebidas">Bebidas</button>
+                </li>
+            </ul>
+
+            <!-- Menu Items -->
+            <div class="tab-content" id="menuTabContent">
+                <!-- Todos os Pratos -->
+                <div class="tab-pane fade show active" id="todos">
+                    <div class="row g-4">
+                        <!-- Entradas -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="entradas">
+                                <img src="https://images.unsplash.com/photo-1506280754576-f6fa8a873550?w=800&h=600&fit=crop" class="card-img-top" alt="Bruschetta">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Bruschetta Caprese</h5>
+                                        <span class="badge bg-danger">R$ 28,00</span>
+                                    </div>
+                                    <p class="card-text">Pão italiano grelhado com tomate, mozzarella e manjericão</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Bruschetta Caprese">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                    <div class="dietary-info">
+                                        <span class="badge bg-success me-1"><i class="fas fa-leaf"></i> Vegetariano</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="entradas">
+                                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&h=600&fit=crop" class="card-img-top" alt="Sopa">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Sopa de Abóbora</h5>
+                                        <span class="badge bg-danger">R$ 32,00</span>
+                                    </div>
+                                    <p class="card-text">Cremosa sopa de abóbora com gengibre e creme de leite</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Sopa de Abóbora">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                    <div class="dietary-info">
+                                        <span class="badge bg-success me-1"><i class="fas fa-leaf"></i> Vegetariano</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pratos Principais -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="principais">
+                                <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?w=800&h=600&fit=crop" class="card-img-top" alt="Filé Mignon">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Filé Mignon ao Molho de Vinho</h5>
+                                        <span class="badge bg-danger">R$ 89,00</span>
+                                    </div>
+                                    <p class="card-text">Filé mignon grelhado com molho de vinho tinto e batatas rústicas</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Filé Mignon ao Molho de Vinho">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                    <div class="dietary-info">
+                                        <span class="badge bg-danger me-1">Mais Pedido</span>
+                                        <span class="badge bg-info">Low Carb</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="principais">
+                                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=600&fit=crop" class="card-img-top" alt="Salmão">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Salmão Grelhado</h5>
+                                        <span class="badge bg-danger">R$ 78,00</span>
+                                    </div>
+                                    <p class="card-text">Salmão grelhado com legumes salteados e molho de ervas</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Salmão Grelhado">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                    <div class="dietary-info">
+                                        <span class="badge bg-info">Low Carb</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sobremesas -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="sobremesas">
+                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop" class="card-img-top" alt="Tiramisu">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Tiramisu</h5>
+                                        <span class="badge bg-danger">R$ 28,00</span>
+                                    </div>
+                                    <p class="card-text">Clássica sobremesa italiana com café e mascarpone</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Tiramisu">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="sobremesas">
+                                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=600&fit=crop" class="card-img-top" alt="Bolo de Chocolate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Bolo de Chocolate</h5>
+                                        <span class="badge bg-danger">R$ 26,00</span>
+                                    </div>
+                                    <p class="card-text">Bolo quente de chocolate com sorvete de baunilha</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Bolo de Chocolate">
+                                            Avaliar Prato
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bebidas -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="bebidas">
+                                <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop" class="card-img-top" alt="Vinho">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Vinho Tinto</h5>
+                                        <span class="badge bg-danger">A partir de R$ 89,00</span>
+                                    </div>
+                                    <p class="card-text">Seleção especial de vinhos tintos nacionais e importados</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Vinho Tinto">
+                                            Avaliar Item
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-item h-100" data-category="bebidas">
+                                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=600&fit=crop" class="card-img-top" alt="Cocktail">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">Cocktails Especiais</h5>
+                                        <span class="badge bg-danger">A partir de R$ 32,00</span>
+                                    </div>
+                                    <p class="card-text">Drinks exclusivos preparados por nossos bartenders</p>
+                                    <div class="rating-system mb-3">
+                                        <div class="stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="far fa-star text-warning"></i>
+                                            <span class="ms-2 text-muted">(4.0)</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#ratingModal" data-dish="Cocktails Especiais">
+                                            Avaliar Item
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Sabor & Arte</h5>
+                    <p>Experiências gastronômicas únicas desde 2010.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contato</h5>
+                    <p>
+                        <i class="fas fa-phone me-2"></i> (11) 1234-5678<br>
+                        <i class="fas fa-envelope me-2"></i> contato@saborarte.com.br
+                    </p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Siga-nos</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <small>&copy; 2024 Sabor & Arte. Todos os direitos reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Inicializar as tabs do Bootstrap
+        var triggerTabList = [].slice.call(document.querySelectorAll('#menuTabs button'));
+        triggerTabList.forEach(function (triggerEl) {
+            var tabTrigger = new bootstrap.Tab(triggerEl);
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault();
+                tabTrigger.show();
+            });
+        });
+
+        // Função de busca
+        document.getElementById('searchMenu').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                const title = item.querySelector('.card-title').textContent.toLowerCase();
+                const description = item.querySelector('.card-text').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Sistema de Avaliação
+        const ratingModal = document.getElementById('ratingModal');
+        const ratingStars = document.querySelectorAll('.rating-stars i');
+        let currentRating = 0;
+
+        ratingModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const dishName = button.getAttribute('data-dish');
+            ratingModal.querySelector('.modal-title').textContent = `Avaliar ${dishName}`;
+        });
+
+        ratingStars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const rating = this.getAttribute('data-rating');
+                highlightStars(rating);
+            });
+
+            star.addEventListener('click', function() {
+                currentRating = this.getAttribute('data-rating');
+                highlightStars(currentRating);
+            });
+
+            star.addEventListener('mouseout', function() {
+                highlightStars(currentRating);
+            });
+        });
+
+        function highlightStars(rating) {
+            ratingStars.forEach(star => {
+                const starRating = star.getAttribute('data-rating');
+                if (starRating <= rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        document.getElementById('submitRating').addEventListener('click', function() {
+            if (currentRating > 0) {
+                // Aqui você pode implementar o envio da avaliação para um backend
+                const modal = bootstrap.Modal.getInstance(ratingModal);
+                modal.hide();
+                
+                // Feedback visual
+                const toastContainer = document.createElement('div');
+                toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+                toastContainer.style.zIndex = '11';
+                
+                const toastElement = document.createElement('div');
+                toastElement.className = 'toast';
+                toastElement.innerHTML = `
+                    <div class="toast-header">
+                        <strong class="me-auto">Avaliação Enviada</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">
+                        Obrigado por avaliar este prato!
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toastElement);
+                document.body.appendChild(toastContainer);
+                
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+                
+                setTimeout(() => {
+                    toastContainer.remove();
+                }, 3000);
+                
+                // Reset
+                currentRating = 0;
+                highlightStars(0);
+                document.querySelector('#ratingForm textarea').value = '';
+            }
+        });
+
+        // Filtrar itens por categoria
+        document.querySelectorAll('#menuTabs .nav-link').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.getAttribute('data-bs-target').replace('#', '');
+                const menuItems = document.querySelectorAll('.menu-item');
+                
+                if (category === 'todos') {
+                    menuItems.forEach(item => item.style.display = '');
+                    return;
+                }
+                
+                menuItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (itemCategory === category) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Rating Modal -->
+    <div class="modal fade" id="ratingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Avaliar Prato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="ratingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Sua Avaliação</label>
+                            <div class="rating-stars mb-3">
+                                <i class="far fa-star text-warning fs-3" data-rating="1"></i>
+                                <i class="far fa-star text-warning fs-3" data-rating="2"></i>
+                                <i class="far fa-star text-warning fs-3" data-rating="3"></i>
+                                <i class="far fa-star text-warning fs-3" data-rating="4"></i>
+                                <i class="far fa-star text-warning fs-3" data-rating="5"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Comentário (opcional)</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="submitRating">Enviar Avaliação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
